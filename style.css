@@ -20,7 +20,7 @@ main{
     height: 170px;
   
     position: relative;
-    background-image: url("/k4-typescipt/img/2752a91fb84f115ddbc867c050aa058b.png");
+    background-image: url("img/2752a91fb84f115ddbc867c050aa058b.png");
     background-size: cover;
     border-top-right-radius: 15px;
     border-top-left-radius: 15px;
