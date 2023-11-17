@@ -1,0 +1,43 @@
+*{
+    margin: auto;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  main{
+    display: flex;
+    width: 1536px;
+    height: 739px;
+    ;
+    background-size: cover;
+  }
+  .profile{
+    border: 2px solid  white;
+    width: 400px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow:  10px 10px 20px rgba(0, 0, 0, 0.703);
+  }
+  .proflie-avatar{
+    height: 170px;
+  
+    position: relative;
+    background-image: url("img/2752a91fb84f115ddbc867c050aa058b.png");
+    background-size: cover;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+  }
+  .proflie-avatar img{
+    width: 120px;
+    border-radius: 50%;
+    position: absolute;
+    top:100px;
+    margin: 0 15px;
+  }
+  .information{
+    margin: 80px 20px 20px 20px;
+    color: white;
+  
+  }
+  .information h2,h4{
+    margin: 20px 0;
+  }

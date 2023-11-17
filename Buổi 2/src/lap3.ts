@@ -155,3 +155,17 @@ function checkUser(custom : Clinets): custom is User{
   }
 customs.filter(checkAdmin).forEach(logClient)
 customs.filter(checkUser).forEach(logClient)
+
+function check(n){
+  if(n>0){
+    return true;
+  }
+  
+}
+// function greet() {
+//   let greeting = 'Hello, world!';
+//   let unusedVar = 'I am not used';
+  
+// }
+
+let MyName:string;

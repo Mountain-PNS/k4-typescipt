@@ -1,4 +1,9 @@
-"use strict";
+// -----------------------------Bài 1 -----------------------------
+// interface User {
+//     name: string,
+//     age : number,
+//     occupation : string,
+// }
 const customs = [
     {
         type: "admin",
@@ -37,3 +42,14 @@ function logClient(client) {
 }
 customs.filter(checkAdmin).forEach(logClient);
 customs.filter(checkUser).forEach(logClient);
+function check(n) {
+    if (n > 0) {
+        return true;
+    }
+}
+// function greet() {
+//   let greeting = 'Hello, world!';
+//   let unusedVar = 'I am not used';
+// }
+let MyName;
+MyName = null;
