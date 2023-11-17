@@ -13,7 +13,7 @@ const Profile = () => {
       <div className="proflie-avatar h-[170px] relative bg-cover rounded-t-2xl"
       style={{backgroundImage: "url('https://image.tienphong.vn/600x315/Uploaded/2023/neg_wznwtpy/2019_08_18/xuat_hien_meme_nguoi_dan_ong_that_vong_duoc_che_anh_khap_the_gioi_ay_sot_mang_xa_hoi_VTJK.jpg'"}}
       >
-        <img className='w-[120px] absolute top-[100px] mx-4 rounded-[50%]' src="https://scontent.fhan17-1.fna.fbcdn.net/v/t39.30808-6/309975946_635122371550387_905810085876252921_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHG1RuRVN1lQddL7Bmv0eJJQWoCcXXwGfpBagJxdfAZ-qt0Bp6twbyt8e8FkPxCUaoA9XJNph1TP1xpicJBu7NB&_nc_ohc=FaI1SX3aNr0AX9y0qV4&_nc_ht=scontent.fhan17-1.fna&oh=00_AfCyED1FxlvkXrCGRT0WuJ8nPPQvm7bAxO54KGANPyHLnw&oe=65545743" />
+        <img className='w-[120px] absolute top-[100px] mx-4 rounded-[50%]' src="https://scontent.fhan17-1.fna.fbcdn.net/v/t39.30808-6/309975946_635122371550387_905810085876252921_n.jpg?stp=dst-jpg_p843x403&_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_ohc=4iiKRlXsEBMAX8DQIs-&_nc_ht=scontent.fhan17-1.fna&oh=00_AfDxqKJ6DhD18fvql05LDDxymapboD6pZ4HEVVIU_U2CuA&oe=655C4043" />
       </div>
       <div className="information mt-[80px] mb-5 my-5 text-white">
         <h2 className='my-5 ml-8'>Phạm Ngọc Sơn</h2>
