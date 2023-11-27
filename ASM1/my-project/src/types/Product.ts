@@ -3,6 +3,7 @@ type ProductRating = {
   count : number
 }
 export type Product = {
+    id : number,
     title: string,
     price: number,
     description:string,
@@ -10,3 +11,8 @@ export type Product = {
     image : string,
     rating : ProductRating
   }
+export type FormValues= {
+  email: String,
+  password: String
+}
+

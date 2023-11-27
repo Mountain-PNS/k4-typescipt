@@ -51,5 +51,8 @@ function check(n) {
 //   let greeting = 'Hello, world!';
 //   let unusedVar = 'I am not used';
 // }
-let MyName;
-MyName = null;
+const Sum = (a) => {
+    if (a > 0) {
+        return true;
+    }
+};

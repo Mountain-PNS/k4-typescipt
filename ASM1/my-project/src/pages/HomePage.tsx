@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import Footer from '../components/elements/Footer';
-import Header from '../components/elements/Header';
+import Footer from '../components/client/Footer';
+import Header from '../components/client/Header';
 import { Product } from '../types/Product';
-import ProductCart from './ProductCart';
-let API = "https://fakestoreapi.com/products";
+import ProductCart from './product/ProductCart';
+export let API = "https://fakestoreapi.com/products";
 
 const HomePage = () => {
   const [product, setProduct] = useState<Product[] > ([]);

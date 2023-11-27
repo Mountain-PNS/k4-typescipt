@@ -168,4 +168,9 @@ function check(n){
   
 // }
 
-let MyName:string;
+const Sum = (a:number)=>{
+     if(a>0){
+      return true
+     }
+}
+
