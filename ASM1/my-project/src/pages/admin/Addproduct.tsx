@@ -2,30 +2,38 @@ import React, { useState, useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Product } from "../../types/Product";
 import axios from "axios";
-type Props = {
-    onAdd:(product:Product)=>void
-};
+import { API } from "../HomePage";
+import { useNavigate } from "react-router-dom";
+type Props = {};
 
-const Addproduct = (props: Props) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-  const onSumit: SubmitHandler<Product> = (data) => {
-    props.onAdd(data)
-  };
+const Addproduct = () => {
+  const navigate = useNavigate()
+  const { register,handleSubmit,formState: { errors }} = useForm();
   const [categories, setCategory] = useState<string[]>([]);
+  const [products,setProduct] = useState<Product[]>([])
+  const getProduct = async () => {
+    const { data } = await axios.get(API);
+    setProduct(data);
+  };
   const getCategory = async () => {
     const { data } = await axios.get(
       "https://fakestoreapi.com/products/categories"
     );
     setCategory(data);
-
   };
   useEffect(() => {
     getCategory();
+    getProduct()
   }, []);
+  const onSumit: SubmitHandler<Product> = async(product:Product) => {
+    if (product) {
+      console.log("data", product);
+      const { data } = await axios.post(API, product);
+      setProduct([...products, data]);
+      alert("Thêm sản phẩm thành công")
+      navigate('/admin/products')
+    }
+  };
   return (
     <div>
       <section className="bg-white dark:bg-gray-900">

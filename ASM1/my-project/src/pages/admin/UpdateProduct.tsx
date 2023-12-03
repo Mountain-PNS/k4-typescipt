@@ -4,12 +4,13 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { API } from "../HomePage";
-
+import { useNavigate } from 'react-router-dom'
 type Props = {
-  data: Product;
+  // onUpdate: (product:Product)=>void
 };
 
-const UpdateProduct = () => {
+const UpdateProduct = (props: Props) => {
+  const navigate = useNavigate()
   const { id } = useParams();
   const [product, setProduct] = useState<Product | null>(null);
   const [categories, setCategory] = useState<string[]>();
@@ -18,7 +19,7 @@ const UpdateProduct = () => {
     const getProductId = async () => {
       const { data } = await axios.get(API + "/" + id);
       setProduct(data);
-      reset(data)
+      reset(data.data)
     };
     const getCategory = async ()=>{
         const {data} = await axios.get("https://fakestoreapi.com/products/categories")
@@ -26,13 +27,14 @@ const UpdateProduct = () => {
     }
     getProductId();
     getCategory();
-  }, [id]);
-  
-
-const onSumit:SubmitHandler<Product> = (data)=>{
-   console.log(data)
-   
-   
+  }, []);
+const onSumit:SubmitHandler<Product> = async (product)=>{
+   if(product){
+    const {data} = await axios.put(API+'/'+product._id,product)
+    setProduct(data)
+    alert("Cập nhật thành công")
+    navigate('/admin/products')
+   }
 }
   return (
     <>
@@ -52,18 +54,12 @@ const onSumit:SubmitHandler<Product> = (data)=>{
                 </label>
                 <input
                   type="text"
-                  name="name"
+                  name="title"
                   id="name"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                   placeholder="Type product name"
                   {...register("title", { required: true, minLength: 8 })}
                 />
-                 {/* {errors.title && errors.title.type === "required" && (
-                  <p className="text-red-500">Không được để trống</p>
-                )}
-                {errors.name && errors.name.type === "minLength" && (
-                  <p className="text-red-500">Kí tự không nhỏ hơn 8</p>
-                )} */}
               </div>
               <div className="w-full">
                 <label
@@ -96,12 +92,6 @@ const onSumit:SubmitHandler<Product> = (data)=>{
                   placeholder="$299"
                   {...register("price", { required: true, minLength: 0 })}
                   />
-                  {/* {errors.price && errors.price.type === "required" && (
-                    <p className="text-red-500">Không được để trống</p>
-                  )}
-                  {errors.price && errors.price.type === "minLength" && (
-                    <p className="text-red-500">Kí tự không nhỏ hơn 0</p>
-                  )} */}
               </div>
               <div>
                 <label
@@ -119,10 +109,6 @@ const onSumit:SubmitHandler<Product> = (data)=>{
                   
                   {...register("category", { required: true})}
                   />
-                  {/* {errors.category && errors.category.type === "required" && (
-                    <p className="text-red-500">Không được để trống</p>
-                  )} */}
-            
               </div>
               <div>
               <label
@@ -142,9 +128,6 @@ const onSumit:SubmitHandler<Product> = (data)=>{
                   
                   {...register("image", { required: true})}
                   />
-                  {/* {errors.image && errors.image.type === "required" && (
-                    <p className="text-red-500">Không được để trống</p>
-                  )} */}
                 </div>
               </div>
               <div className="sm:col-span-2">
@@ -161,9 +144,6 @@ const onSumit:SubmitHandler<Product> = (data)=>{
                   placeholder="Write a product description here..."
                   {...register("description", { required: true })}
                   />
-                  {/* {errors.description && errors.description && (
-                    <p className="text-red-500">Không được để trống</p>
-                  )} */}
               </div>
             </div>
             <div className="flex items-center space-x-4">

@@ -8,37 +8,36 @@ type Props = {
   data: Product[];
 };
 
-const Products = (props: Props) => {
-  const [products, setProduct] = useState<Product[]>(JSON.parse(localStorage.getItem('products') || '[]'));
-
-  useEffect(() => {
-    const getProduct = async () => {
+const Products = () => {
+  const [products, setProduct] = useState<Product[]>([]);
+  const getProduct = async () => {
+    try {
       const { data } = await axios.get(API);
       setProduct(data);
-      localStorage.setItem('products', JSON.stringify(data));
-    };
+    } catch (error) {}
+  };
+  useEffect(() => {
     getProduct();
   }, []);
 
-  const checkId = (id: number) => {
+  const checkId = async (id: string) => {
     const check = confirm("Bạn có muốn xóa không");
     if (check) {
       console.log(id);
-      const newProduct = products.filter((item) => item.id !== id);
-      setProduct(newProduct);
-      localStorage.setItem('products', JSON.stringify(newProduct));
+      const { data } = await axios.delete(API + "/" + id);
+      getProduct();
     }
   };
   return (
     <>
       <div className="  shadow-md h-full">
-        <Link to="add">
-        <button
-          type="button"
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 my-3"
-        >
-          Thêm Sản Phẩm
-        </button>
+        <Link to="/admin/products/add">
+          <button
+            type="button"
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 my-3"
+          >
+            Thêm Sản Phẩm
+          </button>
         </Link>
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400  ">
           <thead className=" text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -79,7 +78,10 @@ const Products = (props: Props) => {
             {products.map((item, index) => {
               return (
                 <>
-                  <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" key={index}>
+                  <tr
+                    className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                    key={index}
+                  >
                     <td className="w-4 p-4">
                       <div className="flex items-center">
                         <input
@@ -111,7 +113,7 @@ const Products = (props: Props) => {
                     <td className="px-6 py-4">${item.price}</td>
                     <td className="flex items-center px-6 py-4">
                       <Link
-                        to={`/admin/product/${item.id}`}
+                        to={`/admin/products/${item._id}`}
                         className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                       >
                         Edit
@@ -120,7 +122,9 @@ const Products = (props: Props) => {
                         href="#"
                         className="font-medium text-red-600 dark:text-red-500 hover:underline ms-3"
                       >
-                        <button onClick={() => checkId(item.id)}>Remove</button>
+                        <button onClick={() => checkId(item._id)}>
+                          Remove
+                        </button>
                       </a>
                     </td>
                   </tr>

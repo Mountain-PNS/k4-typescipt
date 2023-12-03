@@ -17,9 +17,10 @@ type ProductDetailProps = {
     const getProduct = async ()=>{
         const {data} = await axios.get(API)
         setProduct(data)
+      
       }
-   const dataProduct =  product.find((product) => product.id === Number(id)); 
-   const sameCategory = product.filter((product) => product.category === dataProduct.category && product.id !== dataProduct.id);
+   const dataProduct =  product.find((product) => product._id === id); 
+   const sameCategory = product.filter((product) => product.category === dataProduct.category && product._id !== dataProduct._id);
 
    useEffect(()=>{
     getProduct()

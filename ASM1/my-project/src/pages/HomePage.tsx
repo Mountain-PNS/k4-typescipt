@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import Footer from '../components/client/Footer';
-import Header from '../components/client/Header';
 import { Product } from '../types/Product';
-import ProductCart from './product/ProductCart';
-export let API = "https://fakestoreapi.com/products";
+import ProductList from './product/ProductList';
+export let API = "http://localhost:3000/products";
 
 const HomePage = () => {
   const [product, setProduct] = useState<Product[] > ([]);
@@ -21,7 +19,7 @@ const HomePage = () => {
       <>
       <div className="grid grid-cols-4 gap-6 m-12  ">
        {product.map((item,index)=>(
-       <ProductCart key={index} product={item} />
+       <ProductList key={index} product={item} />
         ))}
        </div>      
 

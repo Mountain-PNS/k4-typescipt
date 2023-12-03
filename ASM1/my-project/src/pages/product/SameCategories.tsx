@@ -11,11 +11,11 @@ const SameCategories: React.FC<SameCategoriesProps> = ({product}) => {
        <div className="grid grid-cols-4 gap-6 m-12  ">
       {product.map(item => {
        return  <div className="w-full h-[470px] max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700  ">
-       <Link to={`/product/${item.id}`}>
+       <Link to={`/product/${item._id}`}>
          <img className="p-10 h-[300px] object-contain" src={item.image} alt="product image" />
        </Link>
        <div className="px-5 pb-5">
-         <Link to={`/product/${item.id}`}>
+         <Link to={`/product/${item._id}`}>
            <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
            {item.title.substring(0,28) + '...'}
             </h5>
@@ -42,7 +42,7 @@ const SameCategories: React.FC<SameCategoriesProps> = ({product}) => {
          </div>
          <div className="flex items-center justify-between">
            <span className="text-3xl font-bold text-gray-900 dark:text-white">${item.price}</span>
-           <Link to={`/product/${item.id}`} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</Link>
+           <Link to={`/product/${item._id}`} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</Link>
          </div>
        </div>
      </div>  
